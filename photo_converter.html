@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title -->
+    <title>PixMorph - Photo Format Converter</title>
+    
+    <!-- Meta Basic -->
+    <meta name="description" content="PixMorph adalah alat konversi foto online yang cepat, mudah, dan gratis. Ubah format gambar menjadi WEBP, JPG, JPEG, PNG, GIF, dan lainnya dengan kualitas terbaik.">
+    <meta name="keywords" content="convert gambar, ubah format foto, webp ke jpg, png ke jpeg, konversi gambar online, photo format converter">
+    <meta name="author" content="Alii Polanunu">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="PixMorph - Photo Format Converter">
+    <meta property="og:description" content="Konversi foto ke berbagai format dengan cepat dan mudah. Mendukung WEBP, JPG, JPEG, PNG, GIF, dan lainnya. Gratis tanpa install.">
+    <meta property="og:image" content="https://contoh-domain.com/preview.jpg">
+    <meta property="og:url" content="https://contoh-domain.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PixMorph - Photo Format Converter">
+    <meta name="twitter:description" content="Ubah format gambar menjadi WEBP, JPG, JPEG, PNG, GIF, dan lainnya dengan kualitas terbaik.">
+    <meta name="twitter:image" content="https://contoh-domain.com/preview.jpg">
+    <link rel="icon" type="image/x-icon" href="C:\Users\boy93\Downloads\pixmorph_logo.png">
+    
+    <!-- Tailwind & Flowbite -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Style -->
+    <style>
+        #previewArea {
+            transition: opacity 0.5s ease;
+        }
+        #convertedPreview {
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white shadow-sm border-b">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="text-center">
+                <div class="flex justify-center items-center mb-2">
+                    <img src="C:\Users\boy93\Downloads\pixmorph_logo.png" class="w-10 h-10 rounded-lg mr-2" alt="">
+                    <h1 class="text-3xl font-bold text-gray-900">PixMorph</h1>
+                </div>
+                <p class="text-gray-600 text-xs md:text-sm lg:text-lg">Convert gambar antara format WEBP, JPG, JPEG, PNG, GIF dengan mudah</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- 2 Column Layout for Desktop -->
+        <div id="mainGrid" class="grid gap-8 transition-all duration-500 lg:grid-cols-1 max-w-3xl mx-auto">
+            <!-- Left Column -->
+            <div class="space-y-8">
+                <!-- Upload Area -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Upload Gambar</h3>
+                    <div class="upload-area border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 cursor-pointer" id="uploadArea">
+                        <svg class="mx-auto h-12 w-12 text-gray-400 mb-3" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="mb-2">
+                            <p class="text-base font-medium text-gray-900 mb-1">Pilih atau drag & drop gambar</p>
+                            <p class="text-sm text-gray-500">WEBP, JPG, JPEG, PNG, GIF (Max 10MB)</p>
+                        </div>
+                        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            Browse Files
+                        </button>
+                        <input type="file" class="hidden" id="fileInput" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Format Selection -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Pilih Format Output</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" id="formatSelector">
+                        <button class="format-btn flex flex-col items-center justify-center p-3 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500" data-format="webp">
+                            <span class="text-sm font-medium text-gray-900">WebP</span>
+                            <span class="text-xs text-gray-500 mt-1">Modern</span>
+                        </button>
+                        <button class="format-btn flex flex-col items-center justify-center p-3 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500" data-format="jpeg">
+                            <span class="text-sm font-medium text-gray-900">JPEG</span>
+                            <span class="text-xs text-gray-500 mt-1">Universal</span>
+                        </button>
+                        <button class="format-btn flex flex-col items-center justify-center p-3 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500" data-format="png">
+                            <span class="text-sm font-medium text-gray-900">PNG</span>
+                            <span class="text-xs text-gray-500 mt-1">Transparan</span>
+                        </button>
+                        <button class="format-btn flex flex-col items-center justify-center p-3 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500" data-format="gif">
+                            <span class="text-sm font-medium text-gray-900">GIF</span>
+                            <span class="text-xs text-gray-500 mt-1">Animasi</span>
+                        </button>
+                        <button class="format-btn flex flex-col items-center justify-center p-3 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500" data-format="bmp">
+                            <span class="text-sm font-medium text-gray-900">BMP</span>
+                            <span class="text-xs text-gray-500 mt-1">Bitmap</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quality Settings -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" id="qualitySection">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Pengaturan Kualitas</h3>
+                    <div class="flex items-center space-x-4">
+                        <label class="text-sm font-medium text-gray-700 min-w-fit">Kualitas:</label>
+                        <div class="flex-1">
+                            <input type="range" id="qualityRange" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider" min="10" max="100" value="90">
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 min-w-fit" id="qualityValue">90%</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500 mt-1">
+                        <span>Rendah (Kecil)</span>
+                        <span>Tinggi (Besar)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-8">
+
+        <!-- Preview Area -->
+        <div class="hidden" id="previewArea">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">Preview & Convert</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Original Image -->
+                    <div class="text-center">
+                        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-4">
+                            <h4 class="text-sm font-medium text-gray-900 mb-3">📷 Gambar Asli</h4>
+                            <img id="originalPreview" class="mx-auto max-h-48 rounded-lg shadow-sm" />
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-left">
+                            <div id="originalInfo" class="text-sm text-gray-600 space-y-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Converted Image -->
+                    <div class="text-center">
+                        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-4">
+                            <h4 class="text-sm font-medium text-gray-900 mb-3">🔄 Hasil Konversi</h4>
+                            <img id="convertedPreview" class="mx-auto max-h-48 rounded-lg shadow-sm" />
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-3 text-left">
+                            <div id="convertedInfo" class="text-sm text-gray-600 space-y-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+                    <button id="convertBtn" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                        Convert Image
+                    </button>
+                    <button id="downloadBtn" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Custom slider styles */
+        .slider {
+            background: linear-gradient(to right, #3b82f6 0%, #3b82f6 90%, #e5e7eb 90%, #e5e7eb 100%);
+        }
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .slider::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+    </style>
+
+    <script>
+        let selectedFile = null;
+        let selectedFormat = 'jpeg';
+        let convertedBlob = null;
+
+        // Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewArea = document.getElementById('previewArea');
+        const originalPreview = document.getElementById('originalPreview');
+        const convertedPreview = document.getElementById('convertedPreview');
+        const originalInfo = document.getElementById('originalInfo');
+        const convertedInfo = document.getElementById('convertedInfo');
+        const qualityRange = document.getElementById('qualityRange');
+        const qualityValue = document.getElementById('qualityValue');
+        const qualitySection = document.getElementById('qualitySection');
+        const convertBtn = document.getElementById('convertBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // Upload area events
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileSelect);
+
+        // Format selection
+        document.getElementById('formatSelector').addEventListener('click', (e) => {
+            if (e.target.closest('.format-btn')) {
+                const btn = e.target.closest('.format-btn');
+                const format = btn.dataset.format;
+                selectFormat(format);
+            }
+        });
+
+        // Quality slider
+        qualityRange.addEventListener('input', (e) => {
+            const value = e.target.value;
+            qualityValue.textContent = value + '%';
+            updateSliderBackground(value);
+            if (selectedFile && convertedBlob) {
+                convertImage();
+            }
+        });
+
+        // Convert and download buttons
+        convertBtn.addEventListener('click', convertImage);
+        downloadBtn.addEventListener('click', downloadImage);
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('border-primary-500', 'bg-primary-50');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('border-primary-500', 'bg-primary-50');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('border-primary-500', 'bg-primary-50');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            if (e.target.files.length > 0) {
+                processFile(e.target.files[0]);
+            }
+        }
+
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size must be less than 10MB');
+                return;
+            }
+
+            selectedFile = file;
+            displayOriginalImage(file);
+
+            // Dapatkan elemen grid utama
+            const mainGrid = document.getElementById('mainGrid');
+
+            // Ubah grid jadi 2 kolom + hilangkan batas lebar
+            mainGrid.classList.replace('lg:grid-cols-1', 'lg:grid-cols-2');
+            mainGrid.classList.remove('max-w-3xl', 'mx-auto');
+
+            // Munculkan preview dengan fade-in
+            previewArea.classList.remove('hidden');
+            previewArea.classList.add('opacity-0');
+            setTimeout(() => {
+                previewArea.classList.add('opacity-100');
+                previewArea.classList.remove('opacity-0');
+            }, 50);
+
+            convertedPreview.style.display = 'none';
+            convertedInfo.innerHTML = '';
+            downloadBtn.disabled = true;
+        }
+
+        function displayOriginalImage(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalPreview.src = e.target.result;
+                originalPreview.style.display = 'block';
+                
+                // Display file info
+                const formatType = file.type.split('/')[1].toUpperCase();
+                const fileSize = formatFileSize(file.size);
+                
+                originalInfo.innerHTML = `
+                    <div><strong>Format:</strong> ${formatType}</div>
+                    <div><strong>Ukuran:</strong> ${fileSize}</div>
+                    <div><strong>Nama:</strong> ${file.name}</div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function selectFormat(format) {
+            selectedFormat = format;
+            
+            // Update UI
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.classList.remove('border-primary-500', 'bg-primary-50');
+                btn.classList.add('border-gray-200');
+                btn.querySelector('span').classList.remove('text-primary-700');
+                btn.querySelector('span').classList.add('text-gray-900');
+                btn.querySelectorAll('span')[1].classList.remove('text-primary-600');
+                btn.querySelectorAll('span')[1].classList.add('text-gray-500');
+            });
+            
+            const selectedBtn = document.querySelector(`[data-format="${format}"]`);
+            selectedBtn.classList.add('border-primary-500', 'bg-primary-50');
+            selectedBtn.classList.remove('border-gray-200');
+            selectedBtn.querySelector('span').classList.add('text-primary-700');
+            selectedBtn.querySelector('span').classList.remove('text-gray-900');
+            selectedBtn.querySelectorAll('span')[1].classList.add('text-primary-600');
+            selectedBtn.querySelectorAll('span')[1].classList.remove('text-gray-500');
+
+            // Show/hide quality slider for formats that support it
+            if (format === 'jpeg' || format === 'webp') {
+                qualitySection.style.display = 'block';
+            } else {
+                qualitySection.style.display = 'none';
+            }
+
+            // Auto convert if file is already selected
+            if (selectedFile) {
+                convertImage();
+            }
+        }
+
+        function convertImage() {
+            if (!selectedFile) return;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                let quality = parseFloat(qualityRange.value) / 100;
+                let mimeType = `image/${selectedFormat}`;
+
+                // Handle special cases
+                if (selectedFormat === 'jpg') {
+                    mimeType = 'image/jpeg';
+                }
+
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        convertedBlob = blob;
+                        displayConvertedImage(blob);
+                        downloadBtn.disabled = false;
+                    }
+                }, mimeType, quality);
+            };
+
+            img.src = originalPreview.src;
+        }
+
+        function displayConvertedImage(blob) {
+            const url = URL.createObjectURL(blob);
+            convertedPreview.src = url;
+            convertedPreview.style.display = 'block';
+
+            // Display converted file info
+            const formatType = selectedFormat.toUpperCase();
+            const fileSize = formatFileSize(blob.size);
+            const originalSize = selectedFile.size;
+            const compressionRatio = ((1 - blob.size / originalSize) * 100).toFixed(1);
+
+            convertedInfo.innerHTML = `
+                <div><strong>Format:</strong> ${formatType}</div>
+                <div><strong>Ukuran:</strong> ${fileSize}</div>
+                <div><strong>Kompresi:</strong> ${compressionRatio}% lebih kecil</div>
+                <div class="text-green-600"><strong>Status:</strong> Siap didownload</div>
+            `;
+        }
+
+        function downloadImage() {
+            if (!convertedBlob) return;
+
+            const url = URL.createObjectURL(convertedBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            
+            const originalName = selectedFile.name.split('.')[0];
+            a.download = `${originalName}_converted.${selectedFormat}`;
+            
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function updateSliderBackground(value) {
+            const percentage = value;
+            qualityRange.style.background = `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`;
+        }
+
+        // Initialize
+        updateSliderBackground(90);
+    </script>
+</body>
+</html>
